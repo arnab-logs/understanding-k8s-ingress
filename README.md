@@ -3,15 +3,15 @@
 ![Kubernetes](https://img.shields.io/badge/Kubernetes-326ce5?style=for-the-badge&logo=kubernetes&logoColor=white)
 ![Minikube](https://img.shields.io/badge/Minikube-FFCB2B?style=for-the-badge&logo=kubernetes&logoColor=black)
 ![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
+![Ingress](https://img.shields.io/badge/Ingress-NGINX-339933?style=for-the-badge&logo=nginx&logoColor=white)
 
 ---
 
 ````markdown
 # Kubernetes Hands-On: Django App with Deployment, Service, and Ingress
 
-This repository is designed to help beginners learn **Kubernetes resources** by deploying a simple Django-based Python web application.  
-We will go step by step, starting from building a Docker image, deploying it on Kubernetes, exposing it via a Service, and finally accessing it using an Ingress resource with a custom domain.
-
+This repository documents my learning journey with Kubernetes resources while deploying a simple Django-based Python web application. I go step by step: building a Docker image, deploying it on Kubernetes, exposing it via a Service, and finally accessing it using an Ingress resource with a custom domain.
+````
 ---
 
 ## 📂 Repository Structure
@@ -136,6 +136,7 @@ kubectl get ing
 ```
 
 > Initially, the **ADDRESS field is empty** because we need an Ingress Controller.
+<img width="2934" height="146" alt="image" src="https://github.com/user-attachments/assets/c291b013-ff32-48af-9f92-426d70d4c55c" />
 
 ---
 
@@ -144,12 +145,16 @@ kubectl get ing
 ```bash
 minikube addons enable ingress
 ```
+<img width="2934" height="412" alt="image" src="https://github.com/user-attachments/assets/d001ec68-3de5-4e19-910b-1a2dbf9027f6" />
+
 
 Check pods:
 
 ```bash
 kubectl get pods -A | grep nginx
 ```
+<img width="2934" height="186" alt="image" src="https://github.com/user-attachments/assets/7b0f99c2-8bf7-4d57-bc57-d9ac599b7128" />
+
 
 * Controller runs in namespace `ingress-nginx`.
 * Check logs to confirm the ingress resource is synced:
@@ -157,6 +162,8 @@ kubectl get pods -A | grep nginx
 ```bash
 kubectl logs <nginx-ingress-pod-name> -n ingress-nginx
 ```
+<img width="2934" height="186" alt="image" src="https://github.com/user-attachments/assets/8c87af54-367d-4b5e-b1c7-a58a46184500" />
+
 
 ---
 
@@ -167,6 +174,8 @@ After syncing, the ingress IP will be populated:
 ```bash
 kubectl get ing
 ```
+<img width="2934" height="142" alt="image" src="https://github.com/user-attachments/assets/c046bb48-0cfb-4f28-9878-9e9e43e332ee" />
+
 
 * Local testing requires mapping domain to IP in `/etc/hosts`:
 
@@ -194,5 +203,3 @@ http://foo.bar.com/bar
 * `curl -L` follows redirects, useful for Django apps.
 
 ---
-
-```
